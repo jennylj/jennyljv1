@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.0.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.0.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.0" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Resume-JennyLi">
+<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta property="og:site_name" content="Jenny.Li">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-28T06:08:29.451Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Resume-JennyLi">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.0.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/about/"/>
+
+
+
+
+
+  <title>微博 & 微信 & QQ 移动端消息发布功能分析 | Jenny.Li</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jenny.Li</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/29/qq-weibo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jenny.Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jenny.Li">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">微博 & 微信 & QQ 移动端消息发布功能分析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-29T14:39:54+08:00">2018-07-29</time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>随着国内互联网的发展、产品同质化严重，越来越多的产品选择加入了社交功能，试图以此增强用户粘性。新浪微博、微信朋友圈、QQ动态都具有让个体发布内容的功能，但在产品表现上却不尽相同。本文对比三个产品「发布内容」的功能设计，只简析「发布纯文字消息」和「发布图文消息」两种情况；</p>
+<p><em>体验环境：ios11.4.1</em></p>
+<p>产品slogan对比：</p>
+<p>微博（<em>V8.7.1</em>）：随时随地发现新鲜事。<br>微信（<em>V6.7.1</em>）:微信是一个生活方式。<br>QQ（<em>V7.6.3.466</em>）:每一天，乐在沟通。</p>
+<a id="more"></a>
+<p><strong>一、微博、微信、QQ 使用人群分析：</strong></p>
+<p>QQ使用人群年龄占比：<img src="http://upload-images.jianshu.io/upload_images/13367045-e0702a17e9e05103.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"><br>QQ用户年龄24岁以下占比26.57%，35岁以下用户占比66.93%，41岁以上只占比6.5%。</p>
+<p>微信使用人群年龄占比：<img src="http://upload-images.jianshu.io/upload_images/13367045-917c40937f2b2ba5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"><br>微信用户年龄24岁以下占比23.85，25-40岁以下用户占比67.92%，41岁以上占比8.23%。<br>微博使用人群年龄占比：<img src="http://upload-images.jianshu.io/upload_images/13367045-03eeefc80ab4ba75.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"><br>微博用户年龄24岁以下占比23.84%，25-40岁以下占比71.28%，41岁以上占比4.88%。</p>
+<p>由以上可见，QQ的年轻用户比例比微信、微博要高，微信的中年用户占比是最高的。微博用户主要集中在青年。推测用户和需求场景大致为以下几类：<img src="http://upload-images.jianshu.io/upload_images/13367045-b0fd09b1ee67edb1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"><br><strong>二、微博、微信、QQ 在内容发布上的功能设计（仅针对纯文字/图文消息）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>微博</th>
+<th>微信朋友圈</th>
+<th>QQ说说</th>
+<th>简析</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>发布路径</td>
+<td>打开微博-下方【+】按钮</td>
+<td>打开微信-发现-朋友圈-右上方相机按钮</td>
+<td>打开QQ-动态-好友动态-右上角【+】按钮</td>
+<td>可以看到微博入口层级最浅，因为微博的核心功能是即时信息的发布与获取，而说说/朋友圈只是QQ/微信下的一个模块</td>
+<td></td>
+</tr>
+<tr>
+<td>展示位置</td>
+<td>打开微博</td>
+<td>打开微博-首页-朋友圈</td>
+<td>打开QQ-动态-好友动态</td>
+<td>微博是内容软件，首要展示的是内容；微信、QQ首要展示的是通讯页面</td>
+<td></td>
+</tr>
+<tr>
+<td>发布范围</td>
+<td>公开（所有人可见），朋友圈，仅自己可见，指定部分好友可见</td>
+<td>公开（所有人可见），私密，部分可见，不给谁看</td>
+<td>所有人，QQ好友，私密，部分可见，不给谁看</td>
+<td>这一功能设计差别不大</td>
+<td></td>
+</tr>
+<tr>
+<td>字体</td>
+<td>仅有默认字体</td>
+<td>仅有默认字体</td>
+<td>除默认字体外，有非常多类型的炫彩字、超大字可选择，但需付费或成为黄钻后使用</td>
+<td>QQ主要付费群体年轻化，更容易被这样表面的与众不同所吸引，进而付费。</td>
+<td></td>
+</tr>
+<tr>
+<td>编辑图片</td>
+<td>1，预览后点击下一步/长按图片后编辑。2，可使用贴纸（自带话题属性），滤镜，边框，马赛克，画笔，裁剪，旋转，标签（标签，@，定位）</td>
+<td>1，预览后点击编辑（预览和编辑都在左下方小字体,2，可使用画笔，表情，文字，马赛克，裁剪</td>
+<td>1，选择单张照片可直接点击编辑；选择多张照片预览后点击编辑2，可使用画笔，表情，文字，滤镜，裁剪3，可跳转至第三方天天P图</td>
+<td>微博和动态更倾向让用户表达，微信更注重互动的克制</td>
+<td></td>
+</tr>
+<tr>
+<td>添加图片</td>
+<td>可拍摄/添加本地图片（最多9张）</td>
+<td>可拍摄/添加本地图片（最多9张）</td>
+<td>可拍摄/添加本地图片/精美配图（未提示上限）</td>
+<td>微博和微信更注重内容的展示和质量，QQ的付费群体较为年轻化，更注重的是表达而非倾听</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>进一步简析：</p>
+<p>  微博的用户群体关系虚拟大于现实，即：线上好友与线下好友的重合度不高；普通用户发布动态不必顾忌是否被熟人看到，且微博以内容为王，故发布的入口层级是最浅的，如果用户发布带有话题、定位等功能的内容（加之发布后可见权限为所有微博端用户），传播速度更快，互动性更及时；如：想去太多的人搜索泰国，可以搜索到最新的定位在泰国的微博；当用户想要吐槽奔跑吧兄弟这一期的节目时，搜索#奔跑吧兄弟#，可以搜索到其他用户发布的带有该话题的最新微博并进行评论、点赞、转发。</p>
+<p> 微信加好友策略非常谨慎（双向确认），在这样的用户关系链里，现实大于虚拟。这样的用户关系，互动性已经很强，加之微信好友多是基于目前的社交圈互为好友，所以微信用户更注重隐私及互动的克制，故微信在内容发布的隐私设置里的“谁可以看”字体是比较大的。另外，微信也开通了朋友圈仅三天可见等权限，都是注重用户隐私的表现。在图片编辑功能设计上是最弱化的，因为中年用户群体占比是三者之中最高的，需要考虑这一部分用户的使用，内容生产上侧重简单，易上手。微信发布纯文字需要长按相机按钮，考虑微信是需要满足人们的快节奏碎片化阅读，发布纯文字消息并且要吸引用户观看，从创作上是有难度的，并且不方便展示。</p>
+<p> QQ青少年用户群体是三者之中占比最高，这一部分用户更倾向于表达自己的观点甚至情绪。对付费功能接受程度也高，需要更炫酷的方式来表达自己；发布后的动态可以进行转发，也可以看到其他非好友和好友的动态互动信息，而微信不能，相对来讲更公开，也符合青少年需要表达，需要被关注的特点。</p>
+<p><strong>三、微博、朋友圈、说说不仅在图片编辑功能上相差很多，在图片消息发送的过程中也有差别，发布纯图片消息的操作路径对比：</strong></p>
+<p>对比发现，朋友圈和说说发布照片最快只需2步完成，说说照片发布有4种路径，路径最多，微博最快需要三步，图片编辑页面是无法跳过的，选择图片后，一定会跳转到图片编辑页，是用户发布图片必不可少的步骤，首先微博是博客服务类的社交网站，注重内容的生产质量，其次，微博的用户群体关系是线上好友与线下好友重合度不高，图片编辑页有话题、定位等留痕效果，可以加强用户的即时互动性。微信图片发布也突出了微信侧重简洁的特点。说说发布图片可选择性多，年轻用户群体喜欢拥有多种方式去表达自己，操作也更丰富。<br><img src="http://upload-images.jianshu.io/upload_images/13367045-d43274c9352f5cdf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p><strong>对比结论：</strong><br>微博追求传播的速度，互动的即时性。微信注重简洁，互动的克制，微博和微信都侧重于信息为王，满足了人们快节奏的碎片化阅读。QQ的说说更侧重于让用户用多种方式表达自己。<br><strong>启发：</strong><br>在设定功能和需求时一定要找准定位、明确真实的用户群体,然后找到可存性最好的一个方案，在不断地调整、试错的过程中变成一个具有生命力的产品。在做这篇作业之前，我一直认为QQ的使用人群越来越少，因为我的周边环境使用QQ的频率比较低，产生了很单一的用户视角，需要引起注意，在做功能点对比时，要针对不同群体，多做调研。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/28/appso/" rel="next" title="AppSo 低保真原型图">
+                <i class="fa fa-chevron-left"></i> AppSo 低保真原型图
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/03/foodie/" rel="prev" title=" Foodie 用户反馈报告">
+                 Foodie 用户反馈报告 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Jenny.Li</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/kenny-yu" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:yuxianchao@hotmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jenny.Li</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Mist</a> v6.0.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
